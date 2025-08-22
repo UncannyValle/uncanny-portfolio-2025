@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@payloadcms/admin-bar": "3.52.0",
+    "@payloadcms/db-postgres": "3.52.0",
     "@payloadcms/live-preview-react": "3.52.0",
     "@payloadcms/next": "3.52.0",
     "@payloadcms/payload-cloud": "3.52.0",
@@ -53,11 +54,11 @@
     "react-hook-form": "7.45.4",
     "sharp": "0.34.2",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "@payloadcms/db-postgres": "3.52.0"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
+    "@next/eslint-plugin-next": "^15.5.0",
     "@playwright/test": "1.54.1",
     "@tailwindcss/typography": "^0.5.13",
     "@testing-library/react": "16.3.0",
@@ -70,6 +71,7 @@
     "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.4.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "jsdom": "26.1.0",
     "playwright": "1.54.1",
     "playwright-core": "1.54.1",
