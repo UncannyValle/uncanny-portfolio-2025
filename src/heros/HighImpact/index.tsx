@@ -20,7 +20,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
       className="relative -mt-[10.4rem] flex items-center justify-center text-white max-h-vh height-full"
       data-theme="dark"
     >
-      <div className="container pt-[10.4rem] mb-8 z-10 relative flex items-center justify-center border-b-amber-600">
+      <div className="container pt-[10.4rem] mb-8 z-10 relative flex items-center justify-center">
         <div className="max-w-[36.5rem] md:text-center">
           {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
           {Array.isArray(links) && links.length > 0 && (
@@ -40,7 +40,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
               data-analyticsuserid="bdd1f6e6-a9f3-40ad-b8d4-fcf2df519c9d"
               data-theme="dark"
               data-username="julian_valle"
-            />
+            ></div>
           </div>
         </div>
       </div>
