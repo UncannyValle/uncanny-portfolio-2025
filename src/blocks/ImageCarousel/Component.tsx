@@ -2,7 +2,13 @@ import React from 'react'
 import type { ImageCarousel as ImageCarouselBlock, Media as MediaType } from '@/payload-types'
 import { cn } from '@/utilities/ui'
 import { Media } from '@/components/Media'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, } from '@/components/ui/carousel'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 
 type Props = ImageCarouselBlock & {
   className?: string
