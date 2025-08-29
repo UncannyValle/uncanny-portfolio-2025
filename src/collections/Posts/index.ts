@@ -9,12 +9,12 @@ import {
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
 
-import { authenticated } from '../../access/authenticated'
-import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { Banner } from '../../blocks/Banner/config'
-import { Code } from '../../blocks/Code/config'
-import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { generatePreviewPath } from '../../utilities/generatePreviewPath'
+import { authenticated } from '@/access/authenticated'
+import { authenticatedOrPublished } from '@/access/authenticatedOrPublished'
+import { Banner } from '@/blocks/Banner/config'
+import { Code } from '@/blocks/Code/config'
+import { MediaBlock } from '@/blocks/MediaBlock/config'
+import { generatePreviewPath } from '@/utilities/generatePreviewPath'
 import { populateAuthors } from './hooks/populateAuthors'
 import { revalidateDelete, revalidatePost } from './hooks/revalidatePost'
 
@@ -26,9 +26,14 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from '@/fields/slug'
+import { ImageCarousel } from '@/blocks/ImageCarousel'
 
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
+  labels: {
+    singular: 'Project',
+    plural: 'Projects',
+  },
   access: {
     create: authenticated,
     delete: authenticated,
@@ -92,7 +97,7 @@ export const Posts: CollectionConfig<'posts'> = {
                   return [
                     ...rootFeatures,
                     HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
-                    BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                    BlocksFeature({ blocks: [Banner, Code, MediaBlock, ImageCarousel] }),
                     FixedToolbarFeature(),
                     InlineToolbarFeature(),
                     HorizontalRuleFeature(),

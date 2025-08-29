@@ -1,9 +1,9 @@
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import {
   DefaultNodeTypes,
+  type DefaultTypedEditorState,
   SerializedBlockNode,
   SerializedLinkNode,
-  type DefaultTypedEditorState,
 } from '@payloadcms/richtext-lexical'
 import {
   JSXConvertersFunction,
@@ -16,15 +16,19 @@ import { CodeBlock, CodeBlockProps } from '@/blocks/Code/Component'
 import type {
   BannerBlock as BannerBlockProps,
   CallToActionBlock as CTABlockProps,
+  ImageCarousel as ImageCarouselProps,
   MediaBlock as MediaBlockProps,
 } from '@/payload-types'
 import { BannerBlock } from '@/blocks/Banner/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { cn } from '@/utilities/ui'
+import { ImageCarousel } from '@/blocks/ImageCarousel/Component'
 
 type NodeTypes =
   | DefaultNodeTypes
-  | SerializedBlockNode<CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps>
+  | SerializedBlockNode<
+      CTABlockProps | MediaBlockProps | BannerBlockProps | CodeBlockProps | ImageCarouselProps
+    >
 
 const internalDocToHref = ({ linkNode }: { linkNode: SerializedLinkNode }) => {
   const { value, relationTo } = linkNode.fields.doc!
@@ -52,6 +56,7 @@ const jsxConverters: JSXConvertersFunction<NodeTypes> = ({ defaultConverters }) 
     ),
     code: ({ node }) => <CodeBlock className="col-start-2" {...node.fields} />,
     cta: ({ node }) => <CallToActionBlock {...node.fields} />,
+    imageCarousel: ({ node }) => <ImageCarousel {...node.fields} />,
   },
 })
 

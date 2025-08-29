@@ -1710,6 +1710,16 @@ export interface CodeBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageCarousel".
+ */
+export interface ImageCarousel {
+  media: (number | Media)[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageCarousel';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
