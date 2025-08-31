@@ -7,7 +7,13 @@ import React, { useEffect, useState } from 'react'
 import type { Header } from '@/payload-types'
 
 import { HeaderNav } from './Nav'
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger, } from '@/components/ui/drawer'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer'
 import { Menu as MenuIcon } from 'lucide-react'
 
 interface HeaderClientProps {
