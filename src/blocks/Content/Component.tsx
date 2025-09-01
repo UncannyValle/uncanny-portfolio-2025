@@ -47,6 +47,8 @@ const COLS_SPAN_CLASSES = {
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns } = props
 
+  console.log(columns)
+
   return (
     <div className="container my-16">
       <motion.div
@@ -66,7 +68,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 <motion.div
                   key={key}
                   variants={ITEM_VARIANTS}
-                  className={cn('col-span-4', COLS_SPAN_CLASSES[size], {
+                  className={cn(`col-span-4 lg:col-span-${COLS_SPAN_CLASSES[size!]}`, {
                     'md:col-span-2': size !== 'full',
                   })}
                 >
