@@ -1,3 +1,4 @@
+'use client'
 import { cn } from '@/utilities/ui'
 import React from 'react'
 import RichText from '@/components/RichText'
@@ -7,20 +8,33 @@ import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { motion, type Variants } from 'motion/react'
 
+// Parent container variants for a staggered reveal
 const CONTAINER_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { transition: { delayChildren: 0.8 } },
+  visible: { opacity: 1, y: 0 },
 }
 
+// Child item variants
 const ITEM_VARIANTS: Variants = {
-  hidden: { opacity: 0, scale: 0.92, y: 12, filter: 'blur(6px' },
-  visible: {
+  hidden: {
+    opacity: 0,
+    y: 12,
+    scale: 0.96,
+    filter: 'blur(4px)',
+  },
+  visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
     scale: 1,
     filter: 'blur(0px)',
-    transition: { type: 'spring', stiffness: 400, damping: 32 },
-  },
+    transition: {
+      // base delay + per-item step
+      delay: 0.2 + i * 0.1,
+      type: 'spring',
+      stiffness: 120,
+      damping: 16,
+    },
+  }),
 }
 
 const COLS_SPAN_CLASSES = {
@@ -42,26 +56,61 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
       >
-        {columns &&
-          columns.length > 0 &&
-          columns.map((col, index) => {
-            const { enableLink, link, richText, size } = col
+        {columns?.length
+          ? columns.map((col, index) => {
+              const { enableLink, link, richText } = col
+              const size = col.size ?? 'full'
+              const key = col?.id ?? index
 
-            return (
-              <motion.div
-                className={cn(`col-span-4 lg:col-span-${COLS_SPAN_CLASSES[size!]}`, {
-                  'md:col-span-2': size !== 'full',
-                })}
-                key={index}
-                variants={ITEM_VARIANTS}
-              >
-                {richText && <RichText data={richText} enableGutter={false} />}
-
-                {enableLink && <CMSLink {...link} />}
-              </motion.div>
-            )
-          })}
+              return (
+                <motion.div
+                  key={key}
+                  variants={ITEM_VARIANTS}
+                  className={cn('col-span-4', COLS_SPAN_CLASSES[size], {
+                    'md:col-span-2': size !== 'full',
+                  })}
+                >
+                  {richText && <RichText data={richText} enableGutter={false} />}
+                  {enableLink && <CMSLink {...link} />}
+                </motion.div>
+              )
+            })
+          : null}
       </motion.div>
     </div>
+  )
+}
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 12, scale: 0.96, filter: 'blur(4px)' },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      // base delay + index-based step
+      delay: 0.2 + i * 0.1,
+      type: 'spring',
+      stiffness: 120,
+      damping: 16,
+    },
+  }),
+}
+
+export function List({ items }: { items: string[] }) {
+  return (
+    <motion.ul
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      className="grid gap-4"
+    >
+      {items.map((text, i) => (
+        <motion.li key={text} custom={i} variants={item} className="rounded border p-4">
+          {text}
+        </motion.li>
+      ))}
+    </motion.ul>
   )
 }
