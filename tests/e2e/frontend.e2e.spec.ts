@@ -1,4 +1,4 @@
-import { expect, Page, test } from '@playwright/test'
+import { test, expect, Page } from '@playwright/test'
 
 test.describe('Frontend', () => {
   let page: Page
@@ -15,6 +15,6 @@ test.describe('Frontend', () => {
 
     const heading = page.locator('h1').first()
 
-    await expect(heading).toHaveText("Julian Valle's Portfolio")
+    await expect(heading).toHaveText('Payload Website Template')
   })
 })
