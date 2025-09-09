@@ -3,6 +3,7 @@ import { cn } from '@/utilities/ui'
 import useClickableCard from '@/utilities/useClickableCard'
 import Link from 'next/link'
 import React, { Fragment } from 'react'
+import { motion } from 'motion/react'
 
 import type { Post } from '@/payload-types'
 
@@ -30,9 +31,14 @@ export const Card: React.FC<{
   const href = `/${relationTo}/${slug}`
 
   return (
-    <article
+    <motion.article
+      initial={{ opacity: 0, scale: 1.08, y: 12 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 26, mass: 0.6 }}
       className={cn(
-        'border border-border rounded-lg overflow-hidden bg-card hover:cursor-pointer',
+        // Glassmorphism base + interactive motion
+        'group relative rounded-xl overflow-hidden border border-white/20 bg-white/10 backdrop-blur-md shadow-md transition-all duration-300 ease-out will-change-transform hover:cursor-pointer motion-safe:hover:scale-[1.03] motion-safe:hover:shadow-xl ring-0 motion-safe:hover:ring-1 ring-white/10',
         className,
       )}
       ref={card.ref}
@@ -41,7 +47,7 @@ export const Card: React.FC<{
         {!metaImage && <div className="">No image</div>}
         {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
       </div>
-      <div className="p-4">
+      <div className="p-4 bg-gradient-to-b from-white/5 to-white/0">
         {showCategories && hasCategories && (
           <div className="uppercase text-sm mb-4">
             {showCategories && hasCategories && (
@@ -79,6 +85,6 @@ export const Card: React.FC<{
         )}
         {description && <div className="mt-2">{description && <p>{sanitizedDescription}</p>}</div>}
       </div>
-    </article>
+    </motion.article>
   )
 }
