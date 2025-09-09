@@ -8,8 +8,8 @@ import {
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { anyone } from '../access/anyone'
-import { authenticated } from '../access/authenticated'
+import { anyone } from '@/access/anyone'
+import { authenticated } from '@/access/authenticated'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -43,6 +43,15 @@ export const Media: CollectionConfig = {
     staticDir: path.resolve(dirname, '../../public/media'),
     adminThumbnail: 'thumbnail',
     focalPoint: true,
+    mimeTypes: [
+      'image/*',
+      'video/*',
+      'video/mp4',
+      'video/x-m4v',
+      'video/quicktime',
+      'video/webm',
+      'video/ogg',
+    ],
     imageSizes: [
       {
         name: 'thumbnail',
