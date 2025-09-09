@@ -16,6 +16,7 @@ import { Header } from './Header/config'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -88,4 +89,22 @@ export default buildConfig({
     locales: ['en', 'es', 'pt-PT'], // required
     defaultLocale: 'en', // required
   },
+  // email: nodemailerAdapter({
+  //   defaultFromAddress: 'hello@julianvalle.dev',
+  //   defaultFromName: 'Portfolio',
+  //   // Nodemailer transportOptions
+  //   transportOptions: {
+  //     host: process.env.SMTP_HOST,
+  //     port: process.env.STMP_PORT ?? 587,
+  //     auth: {
+  //       user: process.env.SMTP_USER,
+  //       pass: process.env.SMTP_PASS,
+  //     },
+  //   },
+  // }),
+  email: resendAdapter({
+    defaultFromAddress: 'info@midlowebdesign.com',
+    defaultFromName: 'Nick',
+    apiKey: process.env.RESEND_API ?? '',
+  }),
 })
