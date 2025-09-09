@@ -108,5 +108,6 @@ export const plugins: Plugin[] = [
       region: process.env.S3_REGION,
       endpoint: process.env.S3_ENDPOINT,
     },
+    clientUploads: true,
   }),
 ]
