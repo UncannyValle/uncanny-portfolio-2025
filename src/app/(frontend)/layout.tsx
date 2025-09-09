@@ -14,6 +14,8 @@ import { draftMode } from 'next/headers'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -37,7 +39,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           />
 
           <Header />
-          <div className="pt-20 md:pt-24">{children}</div>
+          <div className="pt-20 md:pt-24">
+            {children}
+            <SpeedInsights />
+            <Analytics />
+          </div>
           <Footer />
         </Providers>
       </body>
