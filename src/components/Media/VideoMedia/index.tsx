@@ -24,7 +24,16 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
   }, [])
 
   if (resource && typeof resource === 'object') {
-    const { filename } = resource
+    const { url, filename, updatedAt, mimeType } = resource
+
+    // Prefer Payload/S3-provided URL; fallback to API file endpoint.
+    const src =
+      (typeof url === 'string' && getMediaUrl(url, updatedAt)) ||
+      (typeof filename === 'string' &&
+        getMediaUrl(`/api/media/file/${encodeURIComponent(filename)}`, updatedAt)) ||
+      undefined
+
+    if (!src) return null
 
     return (
       <video
@@ -37,7 +46,7 @@ export const VideoMedia: React.FC<MediaProps> = (props) => {
         playsInline
         ref={videoRef}
       >
-        <source src={getMediaUrl(`/media/${filename}`)} />
+        <source src={src} type={mimeType || undefined} />
       </video>
     )
   }
