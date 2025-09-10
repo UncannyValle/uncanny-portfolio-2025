@@ -1,9 +1,9 @@
 'use client'
 
 import type { StaticImageData } from 'next/image'
+import NextImage from 'next/image'
 
 import { cn } from '@/utilities/ui'
-import NextImage from 'next/image'
 import React from 'react'
 
 import type { Props as MediaProps } from '../types'
@@ -63,10 +63,10 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
         className={cn(imgClassName)}
         fill={fill}
         height={!fill ? height : undefined}
-        placeholder="blur"
-        blurDataURL={placeholderBlur}
+        placeholder={priority ? 'empty' : 'blur'}
+        blurDataURL={priority ? undefined : placeholderBlur}
         priority={priority}
-        quality={100}
+        fetchPriority={priority ? 'high' : undefined}
         loading={loading}
         sizes={sizes}
         src={src}
