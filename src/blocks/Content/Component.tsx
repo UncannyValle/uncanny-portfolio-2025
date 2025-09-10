@@ -51,13 +51,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
 
   return (
     <div className="container my-16">
-      <motion.div
-        className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16"
-        variants={CONTAINER_VARIANTS}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+      <motion.div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
         {columns?.length
           ? columns.map((col, index) => {
               const { enableLink, link, richText } = col
@@ -68,6 +62,10 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
                 <motion.div
                   key={key}
                   variants={ITEM_VARIANTS}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
                   className={cn(`col-span-4 lg:col-span-${COLS_SPAN_CLASSES[size!]}`, {
                     'md:col-span-2': size !== 'full',
                   })}

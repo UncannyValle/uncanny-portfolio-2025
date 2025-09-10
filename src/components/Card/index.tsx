@@ -39,6 +39,12 @@ export const Card: React.FC<{
       className={cn(
         // Glassmorphism base + interactive motion
         'group relative rounded-xl overflow-hidden border border-white/20 bg-white/10 backdrop-blur-md shadow-md transition-all duration-300 ease-out will-change-transform hover:cursor-pointer motion-safe:hover:scale-[1.03] motion-safe:hover:shadow-xl ring-0 motion-safe:hover:ring-1 ring-white/10',
+        // Better contrast + subtle glow on hover (light & dark)
+        'hover:border-white/30 dark:hover:border-white/40',
+        'hover:ring-primary/30 dark:hover:ring-primary/40',
+        'hover:shadow-[0_0_0_1px_var(--tw-ring-color),0_0_22px_6px_rgba(59,130,246,0.18)] dark:hover:shadow-[0_0_0_1px_var(--tw-ring-color),0_0_26px_8px_rgba(59,130,246,0.28)]',
+        // Accessible focus
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
         className,
       )}
       ref={card.ref}
