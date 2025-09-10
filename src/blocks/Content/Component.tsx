@@ -8,12 +8,6 @@ import type { ContentBlock as ContentBlockProps } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { motion, type Variants } from 'motion/react'
 
-// Parent container variants for a staggered reveal
-const CONTAINER_VARIANTS: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
-
 // Child item variants
 const ITEM_VARIANTS: Variants = {
   hidden: {
@@ -46,8 +40,6 @@ const COLS_SPAN_CLASSES = {
 
 export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns } = props
-
-  console.log(columns)
 
   return (
     <div className="container my-16">
