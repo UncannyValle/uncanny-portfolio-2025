@@ -6,6 +6,7 @@ import {
   InlineToolbarFeature,
   lexicalEditor,
 } from '@payloadcms/richtext-lexical'
+import { linkGroup } from '@/fields/linkGroup'
 
 export const Archive: Block = {
   slug: 'archive',
@@ -76,6 +77,12 @@ export const Archive: Block = {
       defaultValue: 10,
       label: 'Limit',
     },
+    linkGroup({
+      appearances: ['default', 'outline'],
+      overrides: {
+        maxRows: 2,
+      },
+    }),
     {
       name: 'selectedDocs',
       type: 'relationship',

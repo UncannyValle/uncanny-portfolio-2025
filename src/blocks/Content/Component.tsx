@@ -42,7 +42,7 @@ export const ContentBlock: React.FC<ContentBlockProps> = (props) => {
   const { columns } = props
 
   return (
-    <div className="container my-16">
+    <div className="container my-16 min-h-screen flex flex-col justify-center">
       <motion.div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
         {columns?.length
           ? columns.map((col, index) => {
