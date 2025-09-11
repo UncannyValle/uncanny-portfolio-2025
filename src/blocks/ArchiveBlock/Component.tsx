@@ -60,14 +60,14 @@ export const ArchiveBlock: React.FC<
   }
 
   return (
-    <div className="my-16 min-h-screen flex flex-col justify-center" id={`block-${id}`}>
+    <div className="container my-16 min-h-screen flex flex-col justify-center" id={`block-${id}`}>
       {introContent && (
-        <div className="container mb-16">
+        <div className=" mb-16">
           <RichText className="ms-0 max-w-[48rem]" data={introContent} enableGutter={false} />
         </div>
       )}
       <CollectionArchive posts={posts} />
-      <div className="flex flex-col gap-8">
+      <div className="flex justify-center gap-8 w-full my-16">
         {(links || []).map(({ link }, i) => {
           return <CMSLink key={i} size="lg" {...link} />
         })}
